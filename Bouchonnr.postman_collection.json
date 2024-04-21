@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "c03516ce-b014-406f-be8f-02385643c641",
+		"name": "Bouchonnr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8149751"
+	},
+	"item": [
+		{
+			"name": "Create Wine",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Château Lafite Rothschild Pauillac 2019\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/wines",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Plain GET (Wines, no params)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/wines",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Rating Pretty",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wine\":{\n        \"id\": 52\n    },\n    \"score\":3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ratings",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
