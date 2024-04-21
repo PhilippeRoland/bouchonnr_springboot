@@ -8,5 +8,7 @@ Then, run:  <br>*docker build -t bouchonnr_database_image -f Dockerfile.db .*<br
 
 Finally, run <br>*docker build -t bouchonnr .*<br> then <br>*docker run --name bouchonnr_app --network=mynetwork -d -p 8080:8080 bouchonnr*<br> to build and start the app
 
-
+# Notes
+For this MVP, the model is left deliberately simple.<br> 
+Use of document databases might be preferable if schema is called to change as more data is added and exploited (Ratin's raters, Wine types, regions, year, château, etc)
 
