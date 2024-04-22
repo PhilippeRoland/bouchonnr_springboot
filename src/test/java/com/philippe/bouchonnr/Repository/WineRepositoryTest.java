@@ -22,7 +22,7 @@ public class WineRepositoryTest {
     private TestEntityManager entityManager;
 
     @Autowired
-    private WineRepository employeeRepository;
+    private WineRepository wineRepository;
 
     @Test
     public void testWhenFindById_returnWine() {
@@ -34,7 +34,7 @@ public class WineRepositoryTest {
         entityManager.flush();
 
         // when
-        Optional<Wine> foundWine = employeeRepository.findById(persisted.getId());
+        Optional<Wine> foundWine = wineRepository.findById(persisted.getId());
 
         // then
         Assert.assertNotNull(foundWine);

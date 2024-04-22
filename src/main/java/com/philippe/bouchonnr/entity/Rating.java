@@ -26,6 +26,7 @@ public class Rating extends RepresentationModel<Rating> {
 
     @Column(name = "score")
     @Getter
+    @Setter
     @Min(0)
     @Max(5)
     private int score;
