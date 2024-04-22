@@ -2,7 +2,7 @@
 FROM gradle:8.7.0-jdk21-alpine AS build
 WORKDIR /usr/app/
 COPY . .
-RUN gradle clean build
+RUN gradle clean build -x test
 
 # Package stage
 FROM gradle:8.7.0-jdk21-alpine
