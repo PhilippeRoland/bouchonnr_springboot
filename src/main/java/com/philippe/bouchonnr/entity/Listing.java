@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import javax.validation.constraints.Max;
+
 import javax.validation.constraints.Min;
 
 @ToString
 @Entity
-public class Rating {
+public class Listing {
 
     @Id
     @Getter
@@ -24,10 +24,14 @@ public class Rating {
     @Setter
     private Wine wine;
 
-    @Column(name = "score")
+    @Column(name = "seller")
+    @Getter
+    @Setter
+    private String seller;
+
+    @Column(name = "price")
     @Getter
     @Setter
     @Min(0)
-    @Max(5)
-    private int score;
+    private double price;
 }

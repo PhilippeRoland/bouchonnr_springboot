@@ -86,7 +86,7 @@ public class RatingRepositoryTest {
         Assert.assertNotNull(foundWine);
         Assert.assertTrue(foundWine.isPresent());
         System.out.println(foundWine.get().getRatings().size());
-        Assert.assertEquals(3, foundWine.get().getAvgRating(), 1e-15); //need small delta as avg rating is floating point
+        Assert.assertEquals(3, foundWine.get().getAvgRating(), 1e-15);
     }
 
 }
