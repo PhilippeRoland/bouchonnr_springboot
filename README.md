@@ -42,4 +42,6 @@ Additionally, we'd want to have outgoing rate limits in place to avoid our syste
 ## Other improvements
 It's in TODO comments, but @Valid on entity classes is not working - one can create ratings with score <0 or >5 for example. This needs investigating before app is opened to the public
 
+Many key properties, namely datasource URL and passwords, need to be turned into appropriately secured environment variables for proper CI/DF to be possible
+
 
