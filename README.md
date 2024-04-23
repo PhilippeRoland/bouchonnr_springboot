@@ -34,14 +34,14 @@ Hypermedia was not set up in this V1, but is an obvious improvement to make for 
 Similarly, GET requests were set up without pagination, which would be needed to prevent over-fetching in most cases
 
 ## Security
-Calls from the alerting service should be signed with certificates so the target services can trust our notifications, as it could be manipulated.
+Calls from the alerting service should be signed with certificates so the target services can trust our notifications, as it could otherwise be manipulated to fool competitors.
 
 Additionally, we'd want to have outgoing rate limits in place to avoid our system being used as part of a (D)DOS attack. 
-<br>Otherwise, multiple alerts could be set up and pointed by attackers at a target URL. Every listing sent to our system could result in multiple times that amount of calls to said target URL.
+<br>Otherwise, multiple alerts could be set up and pointed by attackers at a given target URL. Every listing sent to our system would then result in multiple times that amount of calls to said target URL.
 
 ## Other improvements
 It's in TODO comments, but @Valid on entity classes is not working - one can create ratings with score <0 or >5 for example. This needs investigating before app is opened to the public
 
-Many key properties, namely datasource URL and passwords, need to be turned into appropriately secured environment variables for proper CI/DF to be possible
+Many key properties, namely datasource URL and passwords, need to be turned into appropriately secured environment variables for proper CI/CD to be possible
 
 
