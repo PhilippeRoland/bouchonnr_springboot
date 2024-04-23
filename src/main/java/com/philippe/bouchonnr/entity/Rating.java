@@ -9,6 +9,7 @@ import javax.validation.constraints.Min;
 
 @ToString
 @Entity
+@Table(name = "Rating")
 public class Rating {
 
     @Id
@@ -18,7 +19,7 @@ public class Rating {
     @ToString.Exclude
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "wine_id")
     @Getter
     @Setter

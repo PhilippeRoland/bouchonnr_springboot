@@ -4,11 +4,16 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.validation.constraints.Min;
+import java.util.Date;
 
 @ToString
 @Entity
+@Table(name = "Listing")
+@EntityListeners(AuditingEntityListener.class) //audits database changes, used to enable @CreatedDate on creationDate
 public class Listing {
 
     @Id
@@ -18,7 +23,7 @@ public class Listing {
     @ToString.Exclude
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "wine_id")
     @Getter
     @Setter
@@ -34,4 +39,10 @@ public class Listing {
     @Setter
     @Min(0)
     private double price;
+
+    //UTC timezone, see application.properties; no setter, as this will be automatically filled in when creating resource
+    @Getter
+    @CreatedDate
+    @Column(name = "creationDate")
+    private Date creationDate;
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -25,9 +26,7 @@ public class AlertRepositoryTest {
     @Autowired
     private AlertRepository alertRepository;
 
-    @Test
-    public void testWhenFindById_returnAlert() {
-        // given
+    private Alert setUpWineAndAlert(String notificationUrl) {
         String name = "wineName";
         Wine wine = new Wine();
         wine.setName(name);
@@ -36,7 +35,7 @@ public class AlertRepositoryTest {
 
         double minPrice = 5d;
         double maxPrice = 30d;
-        String notificationUrl = "https://bouchonnr.free.beeceptor.com";
+
         Alert alert = new Alert();
         alert.setWine(persistedWine);
         alert.setNotificationUrl(notificationUrl);
@@ -45,6 +44,14 @@ public class AlertRepositoryTest {
 
         Alert persistedAlert = entityManager.persist(alert);
         entityManager.flush();
+        return persistedAlert;
+    }
+
+    @Test
+    public void testWhenFindById_returnAlert() {
+        // given
+        String notificationUrl = "https://bouchonnr.free.beeceptor.com";
+        Alert persistedAlert = setUpWineAndAlert(notificationUrl);
 
         // when
         Optional<Alert> foundAlert = alertRepository.findById(persistedAlert.getId());
@@ -52,12 +59,22 @@ public class AlertRepositoryTest {
         // then
         Assert.assertNotNull(foundAlert);
         Assert.assertTrue(foundAlert.isPresent());
-        Assert.assertEquals(persistedWine, foundAlert.get().getWine());
+        Assert.assertEquals(persistedAlert.getWine(), foundAlert.get().getWine());
         Assert.assertEquals(notificationUrl, foundAlert.get().getNotificationUrl());
-        Assert.assertEquals(minPrice, foundAlert.get().getMinPrice(), 1e-15);
-        Assert.assertEquals(maxPrice, foundAlert.get().getMaxPrice(), 1e-15);
-
-
+        Assert.assertEquals(persistedAlert.getMinPrice(), foundAlert.get().getMinPrice(), 1e-15);
+        Assert.assertEquals(persistedAlert.getMaxPrice(), foundAlert.get().getMaxPrice(), 1e-15);
     }
 
+    @Test
+    public void testWhenFindByPrice_returnListing(){
+        // given
+        String notificationUrl = "https://bouchonnr.free.beeceptor.com";
+        Alert persistedAlert = setUpWineAndAlert(notificationUrl);
+
+        // when
+        double price = (persistedAlert.getMinPrice() + persistedAlert.getMaxPrice()) /2;
+        List<Alert> alerts = alertRepository.findByMinPriceLessThanAndMaxPriceGreaterThan(price, price);
+        Assert.assertNotNull(alerts);
+        Assert.assertFalse(alerts.isEmpty());
+    }
 }

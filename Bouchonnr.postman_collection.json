@@ -34,10 +34,19 @@
 			"response": []
 		},
 		{
-			"name": "Plain GET (Wines, no params)",
+			"name": "Create Wine 2",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Maison Champy Corton-Rognet Grand Cru 2020\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "localhost:8080/wines",
 					"host": [
@@ -52,7 +61,7 @@
 			"response": []
 		},
 		{
-			"name": "Create Rating Pretty",
+			"name": "Create Rating",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -73,6 +82,113 @@
 					"port": "8080",
 					"path": [
 						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Listing",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wine\":{\n        \"id\": 1\n    },\n    \"seller\":\"Wine store\",\n    \"price\":25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/listings",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"listings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Alert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wine\":{\n        \"id\": 1\n    },\n    \"notificationUrl\":\"https://bouchonnr.free.beeceptor.com\",\n    \"minPrice\":1,\n    \"maxPrice\":50\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/alerts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alerts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Listings (by price, sorted)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/listings?minprice=0&maxprice=90",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"listings"
+					],
+					"query": [
+						{
+							"key": "minprice",
+							"value": "0"
+						},
+						{
+							"key": "maxprice",
+							"value": "90"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Wine Listings History",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/listings/history?wineId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"listings",
+						"history"
+					],
+					"query": [
+						{
+							"key": "wineId",
+							"value": "1"
+						}
 					]
 				}
 			},

@@ -5,9 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.Min;
+
 @ToString
 @Entity
-public class Alert {
+@Table(name="Alert", indexes = {
+        @Index(columnList = "minPrice, maxPrice")
+})
+public class Alert{
 
     @Id
     @Getter
@@ -16,7 +21,7 @@ public class Alert {
     @ToString.Exclude
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "wine_id")
     @Getter
     @Setter
@@ -25,11 +30,13 @@ public class Alert {
     @Column(name = "minPrice")
     @Getter
     @Setter
+    @Min(0)
     private double minPrice;
 
     @Column(name = "maxPrice")
     @Getter
     @Setter
+    @Min(0) //TODO: should be equal or higher than minPrice. Possibly needs a custom annotation or separate validation
     private double maxPrice;
 
     @Column(name = "notification_url")
