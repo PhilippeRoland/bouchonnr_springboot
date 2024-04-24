@@ -8,6 +8,8 @@ Then, run:  <br>*docker build -t bouchonnr_database_image -f Dockerfile.db .*<br
 
 Finally, run <br>*docker build -t bouchonnr .*<br> then <br>*docker run --name bouchonnr_app --network=mynetwork -d -p 8080:8080 bouchonnr*<br> to build and start the app
 
+The postman collection at the root of the project (Bouchonnr.postman_collection.json) has a few requests one can use that cover all of the various functions developed for this MVP.
+
 # Notes
 ## Technical choices
 Rails was not used, though not for lack of trying. It's possible the environment used (Ubuntu VM running on Host VirtualBox) was not the right choice to setup a Rails dev environment, as I saw many complaints of deprecated versions, difficulties in retrieving versions, compilation issues, etc.<br> 
