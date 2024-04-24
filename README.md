@@ -44,4 +44,8 @@ It's in TODO comments, but @Valid on entity classes is not working - one can cre
 
 Many key properties, namely datasource URL and passwords, need to be turned into appropriately secured environment variables for proper CI/CD to be possible
 
+## Future dream architecture
+For  a use case with high capacity / lots of flow, and a need to be highly reactive, especially on the alerts front (think wine stock market!)
+![image](https://github.com/PhilippeRoland/bouchonnr_springboot/assets/5500168/71775ef2-8a36-4f10-a948-106ce916ff38)
+
 
